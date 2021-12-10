@@ -68,12 +68,12 @@ int main()
     bool bCompletedGame = PlayGame(Difficulty);
     if (bCompletedGame == true)
     {
-      printf ("Nice work! Let's get a little tougher.\n\n");
+      printf("Nice work! Let's get a little tougher.\n\n");
       ++Difficulty;
     }
     else
     {
-      printf ("No, no, this won't do. Try a different one.\n\n");
+      printf("No, no, this won't do. Try a different one.\n\n");
     }
   }
   printf("Quiz Completed.");
