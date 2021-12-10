@@ -7,7 +7,8 @@ bool bCompleteIntroduction = false;
 
 void PrintIntroduction()
 {
-  cout << "Hello student, welcome to the math quizzes!\n\n";
+  cout << "Hello student, welcome to the math quizzes!\n";
+  cout << "You will be solving for 3 variables that add up to a number and those 3 numbers can also be used to multiply to another number.";
 }
 
 int AddVariables(int GuessA, int GuessB, int GuessC)
