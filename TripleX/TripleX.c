@@ -48,14 +48,7 @@ bool PlayGame(int Difficulty)
   printf("\n");
   GuessSum = AddVariables(GuessA, GuessB, GuessC);
   GuessProduct = MultiplyVariables(GuessA, GuessB, GuessC);
-  if (GuessSum == CodeSum && GuessProduct == CodeProduct)
-  {
-    return true;
-  }
-  else
-  {
-    return false;
-  }
+  return (GuessSum == CodeSum && GuessProduct == CodeProduct);
 }
 
 
