@@ -36,21 +36,15 @@ bool PlayGame(int Difficulty)
   const int CodeProduct = CodeA * CodeB * CodeC;
   int GuessA = 0, GuessB = 0, GuessC = 0;
   int GuessSum = 0, GuessProduct = 0;
-  printf("These numbers add up to: "); 
-  printf("\n");
-  printf("%d\n", CodeSum); 
-  printf("and multiply to: ");
-  printf("%d\n", CodeProduct);
-  printf("\n\n");
+  printf("These numbers add up to: %d", CodeSum);
+  printf(" and multiply to: %d\n", CodeProduct);
   scanf("%d", &GuessA); 
   scanf("%d", &GuessB); 
   scanf("%d", &GuessC); 
-  printf("\n");
   GuessSum = AddVariables(GuessA, GuessB, GuessC);
   GuessProduct = MultiplyVariables(GuessA, GuessB, GuessC);
   return (GuessSum == CodeSum && GuessProduct == CodeProduct);
 }
-
 
 int main()
 {
