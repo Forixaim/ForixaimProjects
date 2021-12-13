@@ -27,13 +27,8 @@ bool PlayGame(int Difficulty)
   {
       PrintIntroduction();
   }
-  const int CodeA = rand() % DifficultyScaling;
-  const int CodeB = rand() % DifficultyScaling;
-  const int CodeC = rand() % DifficultyScaling;
-  const int CodeSum = CodeA + CodeB + CodeC;
-  const int CodeProduct = CodeA * CodeB * CodeC;
-  int GuessA = 0, GuessB = 0, GuessC = 0;
-  int GuessSum = 0, GuessProduct = 0;
+  const int CodeA = rand() % DifficultyScaling, CodeB = rand() % DifficultyScaling, CodeC = rand() % DifficultyScaling, CodeSum = CodeA + CodeB + CodeC, CodeProduct = CodeA * CodeB * CodeC;
+  int GuessA = 0, GuessB = 0, GuessC = 0, GuessSum = 0, GuessProduct = 0;
   printf("These numbers add up to: %d", CodeSum);
   printf(" and multiply to: %d\n", CodeProduct);
   scanf("%d", &GuessA); 
