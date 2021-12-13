@@ -4,11 +4,9 @@ using namespace std;
 
 bool bCompleteIntroduction = false;
 
-
 void PrintIntroduction()
 {
-  cout << "Hello student, welcome to the math quizzes!\n";
-  cout << "You will be solving for 3 variables that add up to a number and those 3 numbers can also be used to multiply to another number.";
+  cout << "Hello student, welcome to the math quizzes!\n" << "You will be solving for 3 variables that add up to a number and those 3 numbers can also be used to multiply to another number.";
 }
 
 int AddVariables(int GuessA, int GuessB, int GuessC)
@@ -36,14 +34,7 @@ bool PlayGame(int Difficulty)
   cout << "\n";
   GuessSum = AddVariables(GuessA, GuessB, GuessC);
   GuessProduct = MultiplyVariables(GuessA, GuessB, GuessC);
-  if (GuessSum == CodeSum && GuessProduct == CodeProduct)
-  {
-    return true;
-  }
-  else
-  {
-    return false;
-  }
+  return (GuessSum == CodeSum && GuessProduct == CodeProduct);
 }
 
 
