@@ -3,6 +3,7 @@
 using namespace std;
 
 bool bCompleteIntroduction = false;
+bool bDebugMode = false;
 
 void PrintIntroduction()
 {
@@ -24,6 +25,10 @@ bool PlayGame(int Difficulty)
   const int DifficultyScaling = pow(3,Difficulty) + 1 ,CodeA = rand() % DifficultyScaling, CodeC = rand() % DifficultyScaling, CodeB = rand() % DifficultyScaling, CodeSum = CodeA + CodeB + CodeC, CodeProduct = CodeA * CodeB * CodeC;
   int GuessA = 0, GuessB = 0, GuessC = 0, GuessSum = 0, GuessProduct = 0;
   cout << "These numbers add up to: " << CodeSum << "\n and multiply to: " << CodeProduct << endl << endl;
+  if (bDebugMode == true)
+  {
+    cout << "[DEBUG] Codes are: " << CodeA << " " << CodeB << " " << CodeC << "\n\n" ;
+  }
   cin >> GuessA >> GuessB >> GuessC;
   cout << endl;
   GuessSum = AddVariables(GuessA, GuessB, GuessC);
