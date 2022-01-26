@@ -4,15 +4,18 @@
 using namespace std;
 
 // Universal Variables
-int DifficultyScaling;
+int DifficultyScaling = 0;
 int RandomNumber[3];
 int RandomMultiplier[3];
 int EndlessDifficulty = 3;
+int CheckNumber = 0;
 
-// Solutions
+// Solutions & Other Arrays
+
 int SolutionArray1[3] = {0,0,0};
 int SolutionArray2[3] = {0,0,0};
 int SolutionArray3[3] = {0,0,0};
+
 
 // Booleans
 bool bCompleteIntroduction = false;
@@ -197,10 +200,12 @@ void RandomizeMultipliers()
 
 bool PlayGame(int Difficulty)
 {
-  for (int i = 0; i < 3; i++)
-  {
-    RandomNumber[i] = rand() % ((DifficultyScaling + 2) * 2) - (DifficultyScaling + 2);
-  }
+  // Variables and Arrays
+  int Codes[3];
+  int CodeSum[3];
+  int Guess[3];
+  int GuessSums[3];
+  // Check if Endless Mode is Enabled
   if (bEndlessMode)
   {
     DifficultyScaling = EndlessDifficulty;
@@ -209,46 +214,73 @@ bool PlayGame(int Difficulty)
   {
     DifficultyScaling = pow(3,Difficulty) + 1;
   }
-  int Codes[3] = {rand() % (DifficultyScaling * 2) - DifficultyScaling, rand() % (DifficultyScaling * 2) - DifficultyScaling, rand() % (DifficultyScaling * 2) - DifficultyScaling};
-  RandomizeMultipliers();
+  // Randomizes the Array of 3 Random Numbers as well as codes.
   for (int i = 0; i < 3; i++)
   {
-    SolutionArray1[i] = RandomMultiplier[i];
+    RandomNumber[i] = rand() % ((DifficultyScaling + 2) * 2) - (DifficultyScaling + 2);
+    Codes[i] = rand() % (DifficultyScaling * 2) - DifficultyScaling;
   }
-  const int CodeSumA = RandomEquationA(Codes[0], Codes[1], Codes[2]);
-  RandomizeMultipliers();
-    for (int i = 0; i < 3; i++)
-  {
-    SolutionArray2[i] = RandomMultiplier[i];
-  }
-  const int CodeSumB = RandomEquationB(Codes[0], Codes[1], Codes[2]);
-  int GuessA = 0, GuessB = 0, GuessC = 0;
-  int RandomSum;
-  RandomizeMultipliers();
-
   for (int i = 0; i < 3; i++)
   {
-    SolutionArray3[i] = RandomMultiplier[i];
-  }
-  RandomSum = RandomEquationC(Codes[0], Codes[1], Codes[2]);
-
+    CheckNumber = i+1;
+    RandomizeMultipliers();
+    CodeSum[i] = RandomEquationA(Codes[0], Codes[1],  Codes[2]);
+    switch (CheckNumber)
+    {
+      case 1:
+        for (int i = 0; i < 3; i++)
+        {
+          SolutionArray1[i] = RandomMultiplier[i];
+        }
+        break;
+      case 2:
+        for (int i = 0; i < 3; i++)
+        {
+          SolutionArray2[i] = RandomMultiplier[i];
+        }
+        break;
+      default:
+        for (int i = 0; i < 3; i++)
+        {
+          SolutionArray3[i] = RandomMultiplier[i];
+        }
+        break;
+    }
+  } 
   if (bDebugMode == true)
   {
     cout << "[DEBUG] Codes are: " << Codes[0] << " " << Codes[1] << " " << Codes[2] << "\n\n" ;
   }
-  cin >> GuessA >> GuessB >> GuessC;
+  cin >> Guess[0] >> Guess[1] >> Guess[2];
   cout << endl;
-  int GuessSums[3] = {CheckAnswer1(GuessA, GuessB, GuessC), CheckAnswer2(GuessA, GuessB, GuessC), CheckAnswer3(GuessA, GuessB, GuessC)};
+  //Loop for checking answers.
+  for (int i = 0; i < 3; i++)
+  {
+    CheckNumber = i+1;
+    switch (CheckNumber)
+    {
+      case 1:
+        GuessSums[i] = CheckAnswer1(Guess[0], Guess[1], Guess[2]);
+      break;
+      case 2:
+        GuessSums[i] = CheckAnswer2(Guess[0], Guess[1], Guess[2]);
+      break;
+      default:
+        GuessSums[i] = CheckAnswer3(Guess[0], Guess[1], Guess[2]);
+      break;
+    }
+  }
+  
   for (int i = 0; i < 3; i++)
   {
     cout << "Answer " << i+1 << ": " << GuessSums[i] << endl << endl;
   }
-  return (GuessSums[0] == CodeSumA && GuessSums[1] == CodeSumB && GuessSums[2] == RandomSum);
+  return (GuessSums[0] == CodeSum[0] && GuessSums[1] == CodeSum[1] && GuessSums[2] == CodeSum[2]);
 }
 
 int main()
 {
-  int MaxDifficulty = 10;
+  int MaxDifficulty;
   if (bEndlessMode)
   {
     MaxDifficulty = 2147483647;
