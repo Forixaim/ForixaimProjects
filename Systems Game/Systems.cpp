@@ -1,175 +1,249 @@
+// Libraries
 #include <iostream>
 #include <cmath>
 using namespace std;
 
-int RandomNumberA;
-int RandomNumberB;
-int RandomNumberC;
+// Universal Variables
+int DifficultyScaling;
+int RandomNumber[3];
+int RandomMultiplier[3];
+int EndlessDifficulty = 3;
 
-int RandomNumberD;
-int RandomNumberE;
-int RandomNumberF;
+// Solutions
+int SolutionArray1[3] = {0,0,0};
+int SolutionArray2[3] = {0,0,0};
+int SolutionArray3[3] = {0,0,0};
 
+// Booleans
 bool bCompleteIntroduction = false;
 bool bDebugMode = true;
 bool bEndlessMode = true;
-int EndlessDifficulty = 3;
 
 void PrintIntroduction()
 {
   cout << "Hello student, welcome to the math quizzes!\n" << "You will be solving for 3 variables that add up to a number and those 3 numbers can also be used to multiply to another number. There will be additional equations that will help.";
 }
 
-int AddVariables(int GuessA, int GuessB, int GuessC)
-{
-  return GuessA + GuessB + GuessC; 
-}
-
-int MultiplyVariables(int GuessA, int GuessB, int GuessC)
-{
-  return GuessA - GuessB + GuessC; 
-}
-
-int RandomEquationA(int X, int Y, int Z)
+int RandomEquationA(int X, int Y, int Z) // Clean
 {
   int Answer = 0;
-  string a = to_string(RandomNumberD);
-  string b = to_string(RandomNumberE);
-  string c = to_string(RandomNumberF);
-  switch (RandomNumberA)
+  string a[3] = {to_string(RandomMultiplier[0]), to_string(RandomMultiplier[1]), to_string(RandomMultiplier[2])};
+  switch (RandomNumber[0])
   {
     case 1:
-    Answer = (RandomNumberD*X) - (RandomNumberE*Y) + (RandomNumberF*Z);
-    cout << a << "x - " << b << "y + "<< c <<"z = " << Answer << "\n\n";
+    Answer = (RandomMultiplier[0]*X) - (RandomMultiplier[1]*Y) + (RandomMultiplier[2]*Z);
+    cout << a[0] << "x - " << a[1] << "y + "<< a[2] <<"z = " << Answer << "\n\n";
     break;
     case 2:
-    Answer = (RandomNumberD*X) - (RandomNumberE*Y) - (RandomNumberF*Z);
-    cout << a << "x - " << b << "y - " << c << "z = " << Answer << "\n\n";
+    Answer = (RandomMultiplier[0]*X) - (RandomMultiplier[1]*Y) - (RandomMultiplier[2]*Z);
+    cout << a[0] << "x - " << a[1] << "y - " << a[2] << "z = " << Answer << "\n\n";
     break;
     case 3:
-    Answer = -(RandomNumberD*X) + (RandomNumberE*Y) - (RandomNumberF*Z);
-    cout << a <<"x + " << b <<"y - " << c <<"z = " << Answer << "\n\n";
+    Answer = -(RandomMultiplier[0]*X) + (RandomMultiplier[1]*Y) - (RandomMultiplier[2]*Z);
+    cout << a[0] <<"x + " << a[1] <<"y - " << a[2] <<"z = " << Answer << "\n\n";
     break;
     case 4:
-    Answer = (RandomNumberD*X) + (RandomNumberE*Y) + (RandomNumberF*Z);
-    cout << a <<"x + " << b << "y + " << c << "z = " << Answer << "\n\n";
+    Answer = (RandomMultiplier[0]*X) + (RandomMultiplier[1]*Y) + (RandomMultiplier[2]*Z);
+    cout << a[0] <<"x + " << a[1] << "y + " << a[2] << "z = " << Answer << "\n\n";
     break;
     default:
-    Answer = (RandomNumberD*X) - (RandomNumberE*Y) + (RandomNumberF*Z);
-    cout << a << "x - " << b << "y - " << c << "z = " << Answer << "\n\n";
+    Answer = (RandomMultiplier[0]*X) - (RandomMultiplier[1]*Y) + (RandomMultiplier[2]*Z);
+    cout << a[0] << "x - " << a[1] << "y - " << a[2] << "z = " << Answer << "\n\n";
     break;
   }
   return Answer;
 }
-int RandomEquationB(int X, int Y, int Z)
+int RandomEquationB(int X, int Y, int Z) // Cleaned Up
 {
   int Answer = 0;
-    string a = to_string(RandomNumberD);
-  string b = to_string(RandomNumberE);
-  string c = to_string(RandomNumberF);
-  switch (RandomNumberB)
+
+    string a[3] = {to_string(RandomMultiplier[0]), to_string(RandomMultiplier[1]), to_string(RandomMultiplier[2])};
+  switch (RandomNumber[1])
   {
    case 1:
-    Answer = (RandomNumberD*X) - (RandomNumberE*Y) + (RandomNumberF*Z);
-    cout << a << "x - " << b << "y + "<< c <<"z = " << Answer << "\n\n";
+    Answer = (RandomMultiplier[0]*X) - (RandomMultiplier[1]*Y) + (RandomMultiplier[2]*Z);
+    cout << a[0] << "x - " << a[1] << "y + "<< a[2] <<"z = " << Answer << "\n\n";
     break;
     case 2:
-    Answer = (RandomNumberD*X) - (RandomNumberE*Y) - (RandomNumberF*Z);
-    cout << a << "x - " << b << "y - " << c << "z = " << Answer << "\n\n";
+    Answer = (RandomMultiplier[0]*X) - (RandomMultiplier[1]*Y) - (RandomMultiplier[2]*Z);
+    cout << a[0] << "x - " << a[1] << "y - " << a[2] << "z = " << Answer << "\n\n";
     break;
     case 3:
-    Answer = -(RandomNumberD*X) + (RandomNumberE*Y) - (RandomNumberF*Z);
-    cout << a <<"x + " << b <<"y - " << c <<"z = " << Answer << "\n\n";
+    Answer = -(RandomMultiplier[0]*X) + (RandomMultiplier[1]*Y) - (RandomMultiplier[2]*Z);
+    cout << a[0] <<"x + " << a[1] <<"y - " << a[2] <<"z = " << Answer << "\n\n";
     break;
     case 4:
-    Answer = (RandomNumberD*X) + (RandomNumberE*Y) + (RandomNumberF*Z);
-    cout << a <<"x + " << b << "y + " << c << "z = " << Answer << "\n\n";
+    Answer = (RandomMultiplier[0]*X) + (RandomMultiplier[1]*Y) + (RandomMultiplier[2]*Z);
+    cout << a[0] <<"x + " << a[1] << "y + " << a[2] << "z = " << Answer << "\n\n";
     break;
     default:
-    Answer = (RandomNumberD*X) - (RandomNumberE*Y) + (RandomNumberF*Z);
-    cout << a << "x - " << b << "y - " << c << "z = " << Answer << "\n\n";
+    Answer =(RandomMultiplier[0]*X) - (RandomMultiplier[1]*Y) + (RandomMultiplier[2]*Z);
+    cout << a[0] << "x - " << a[1] << "y - " << a[2] << "z = " << Answer << "\n\n";
     break;
   }
   return Answer;
 }
 
-int RandomEquationC(int X, int Y, int Z)
+int RandomEquationC(int X, int Y, int Z) // Spotless!
 {
 
   int Answer = 0;
-    string a = to_string(RandomNumberD);
-  string b = to_string(RandomNumberE);
-  string c = to_string(RandomNumberF);
-  switch (RandomNumberC)
+  string a[3] = {to_string(RandomMultiplier[0]), to_string(RandomMultiplier[1]), to_string(RandomMultiplier[2])};
+  switch (RandomNumber[2])
   {
    case 1:
-    Answer = (RandomNumberD*X) - (RandomNumberE*Y) + (RandomNumberF*Z);
-    cout << a << "x - " << b << "y + "<< c <<"z = " << Answer << "\n\n";
+    Answer = (RandomMultiplier[0]*X) - (RandomMultiplier[1]*Y) + (RandomMultiplier[2]*Z);
+    cout << a[0] << "x - " << a[1] << "y + "<< a[2] <<"z = " << Answer << "\n\n";
     break;
     case 2:
-    Answer = (RandomNumberD*X) - (RandomNumberE*Y) - (RandomNumberF*Z);
-    cout << a << "x - " << b << " y - " << c << "z = " << Answer << "\n\n";
+    Answer = (RandomMultiplier[0]*X) - (RandomMultiplier[1]*Y) - (RandomMultiplier[2]*Z);
+    cout << a[0] << "x - " << a[1] << " y - " << a[2] << "z = " << Answer << "\n\n";
     break;
     case 3:
-    Answer = -(RandomNumberD*X) + (RandomNumberE*Y) - (RandomNumberF*Z);
-    cout << a <<"x + " << b <<"y - " << c <<"z = " << Answer << "\n\n";
+    Answer = -(RandomMultiplier[0]*X) + (RandomMultiplier[1]*Y) - (RandomMultiplier[2]*Z);
+    cout << a[0] <<"x + " << a[1] <<"y - " << a[2] <<"z = " << Answer << "\n\n";
     break;
     case 4:
-    Answer = (RandomNumberD*X) + (RandomNumberE*Y) + (RandomNumberF*Z);
-    cout << a <<"x + " << b << "y + " << c << "z = " << Answer << "\n\n";
+    Answer = (RandomMultiplier[0]*X) + (RandomMultiplier[1]*Y) + (RandomMultiplier[2]*Z);
+    cout << a[0] <<"x + " << a[1] << "y + " << a[2] << "z = " << Answer << "\n\n";
     break;
     default:
-    Answer = (RandomNumberD*X) - (RandomNumberE*Y) + (RandomNumberF*Z);
-    cout << a << "x - " << b << "y - " << c << "z = " << Answer << "\n\n";
+    Answer = (RandomMultiplier[0]*X) - (RandomMultiplier[1]*Y) + (RandomMultiplier[2]*Z);
+    cout << a[0] << "x - " << a[1] << "y - " << a[2] << "z = " << Answer << "\n\n";
     break;
   }
   return Answer;
+}
+
+int CheckAnswer1(int X, int Y, int Z) // Cleaner
+{
+  int Answer = 0;
+  switch (RandomNumber[0])
+  {
+    case 1:
+    Answer = (SolutionArray1[0]*X) - (SolutionArray1[1]*Y) + (SolutionArray1[2]*Z);
+    break;
+    case 2:
+    Answer = (SolutionArray1[0]*X) - (SolutionArray1[1]*Y) - (SolutionArray1[2]*Z);
+    break;
+    case 3:
+    Answer = -(SolutionArray1[0]*X) + (SolutionArray1[1]*Y) - (SolutionArray1[2]*Z);
+    break;
+    case 4:
+    Answer = (SolutionArray1[0]*X) + (SolutionArray1[1]*Y) + (SolutionArray1[2]*Z);
+    break;
+    default:
+    Answer = (SolutionArray1[0]*X) - (SolutionArray1[1]*Y) + (SolutionArray1[2]*Z);
+    break;
+  }
+  return Answer;
+}
+
+int CheckAnswer2(int X, int Y, int Z) // Cleaner
+{
+  int Answer = 0;
+  switch (RandomNumber[0])
+  {
+    case 1:
+    Answer = (SolutionArray2[0]*X) - (SolutionArray2[1]*Y) + (SolutionArray2[2]*Z);
+    break;
+    case 2:
+    Answer = (SolutionArray2[0]*X) - (SolutionArray2[1]*Y) - (SolutionArray2[2]*Z);
+    break;
+    case 3:
+    Answer = -(SolutionArray2[0]*X) + (SolutionArray2[1]*Y) - (SolutionArray2[2]*Z);
+    break;
+    case 4:
+    Answer = (SolutionArray2[0]*X) + (SolutionArray2[1]*Y) + (SolutionArray2[2]*Z);
+    break;
+    default:
+    Answer = (SolutionArray2[0]*X) - (SolutionArray2[1]*Y) + (SolutionArray2[2]*Z);
+    break;
+  }
+  return Answer;
+}
+
+int CheckAnswer3(int X, int Y, int Z) // Cleaner
+{
+  int Answer = 0;
+  switch (RandomNumber[0])
+  {
+    case 1:
+    Answer = (SolutionArray3[0]*X) - (SolutionArray3[1]*Y) + (SolutionArray3[2]*Z);
+    break;
+    case 2:
+    Answer = (SolutionArray3[0]*X) - (SolutionArray3[1]*Y) - (SolutionArray3[2]*Z);
+    break;
+    case 3:
+    Answer = -(SolutionArray3[0]*X) + (SolutionArray3[1]*Y) - (SolutionArray3[2]*Z);
+    break;
+    case 4:
+    Answer = (SolutionArray3[0]*X) + (SolutionArray3[1]*Y) + (SolutionArray3[2]*Z);
+    break;
+    default:
+    Answer = (SolutionArray3[0]*X) - (SolutionArray3[1]*Y) + (SolutionArray3[2]*Z);
+    break;
+  }
+  return Answer;
+}
+
+void RandomizeMultipliers()
+{
+  for (int i = 0; i < 3; i++)
+  {
+    RandomMultiplier[i] = rand() % ((DifficultyScaling + 2) * 2) - (DifficultyScaling + 2);
+  }
 }
 
 bool PlayGame(int Difficulty)
 {
-  RandomNumberA = rand() % 5;
-  int DifficultyScaling;
+  for (int i = 0; i < 3; i++)
+  {
+    RandomNumber[i] = rand() % ((DifficultyScaling + 2) * 2) - (DifficultyScaling + 2);
+  }
   if (bEndlessMode)
   {
     DifficultyScaling = EndlessDifficulty;
   }
   else
   {
-      DifficultyScaling = pow(3,Difficulty) + 1;
+    DifficultyScaling = pow(3,Difficulty) + 1;
   }
-  int CodeA = rand() % (DifficultyScaling * 2) - DifficultyScaling;
-  
-  int CodeC = rand() % (DifficultyScaling * 2) - DifficultyScaling;
-
-  int CodeB = rand() % (DifficultyScaling * 2) - DifficultyScaling;
-  RandomNumberD = rand() % ((DifficultyScaling + 2) * 2) - (DifficultyScaling + 2);
-  RandomNumberE = rand() % ((DifficultyScaling + 2) * 2) - (DifficultyScaling + 2);
-  RandomNumberF = rand() % ((DifficultyScaling + 2) * 2) - (DifficultyScaling + 2);
-  const int CodeSumA = RandomEquationA(CodeA, CodeB, CodeC);
-    RandomNumberD = rand() % ((DifficultyScaling + 2) * 2) - (DifficultyScaling + 2);
-  RandomNumberE = rand() % ((DifficultyScaling + 2) * 2) - (DifficultyScaling + 2);
-  RandomNumberF = rand() % ((DifficultyScaling + 2) * 2) - (DifficultyScaling + 2);
-  const int CodeSumB = RandomEquationB(CodeA, CodeB, CodeC);
+  int Codes[3] = {rand() % (DifficultyScaling * 2) - DifficultyScaling, rand() % (DifficultyScaling * 2) - DifficultyScaling, rand() % (DifficultyScaling * 2) - DifficultyScaling};
+  RandomizeMultipliers();
+  for (int i = 0; i < 3; i++)
+  {
+    SolutionArray1[i] = RandomMultiplier[i];
+  }
+  const int CodeSumA = RandomEquationA(Codes[0], Codes[1], Codes[2]);
+  RandomizeMultipliers();
+    for (int i = 0; i < 3; i++)
+  {
+    SolutionArray2[i] = RandomMultiplier[i];
+  }
+  const int CodeSumB = RandomEquationB(Codes[0], Codes[1], Codes[2]);
   int GuessA = 0, GuessB = 0, GuessC = 0;
-  int GuessSumA = 0, GuessSumB = 0;
-  
-  int RandomGuessSum;
   int RandomSum;
-    RandomNumberD = rand() % ((DifficultyScaling + 2) * 2) - (DifficultyScaling + 2);
-  RandomNumberE = rand() % ((DifficultyScaling + 2) * 2) - (DifficultyScaling + 2);
-  RandomNumberF = rand() % ((DifficultyScaling + 2) * 2) - (DifficultyScaling + 2);
-  RandomSum = RandomEquationC(CodeA, CodeB, CodeC);
+  RandomizeMultipliers();
+
+  for (int i = 0; i < 3; i++)
+  {
+    SolutionArray3[i] = RandomMultiplier[i];
+  }
+  RandomSum = RandomEquationC(Codes[0], Codes[1], Codes[2]);
+
   if (bDebugMode == true)
   {
-    cout << "[DEBUG] Codes are: " << CodeA << " " << CodeB << " " << CodeC << "\n\n" ;
+    cout << "[DEBUG] Codes are: " << Codes[0] << " " << Codes[1] << " " << Codes[2] << "\n\n" ;
   }
   cin >> GuessA >> GuessB >> GuessC;
   cout << endl;
-  GuessSumA = RandomEquationA(GuessA, GuessB, GuessC);
-  GuessSumB = RandomEquationB(GuessA, GuessB, GuessC);
-  RandomGuessSum = RandomEquationC(GuessA, GuessB, GuessC);
-  return (GuessSumA == CodeSumA && GuessSumB == CodeSumB);
+  int GuessSums[3] = {CheckAnswer1(GuessA, GuessB, GuessC), CheckAnswer2(GuessA, GuessB, GuessC), CheckAnswer3(GuessA, GuessB, GuessC)};
+  for (int i = 0; i < 3; i++)
+  {
+    cout << "Answer " << i+1 << ": " << GuessSums[i] << endl << endl;
+  }
+  return (GuessSums[0] == CodeSumA && GuessSums[1] == CodeSumB && GuessSums[2] == RandomSum);
 }
 
 int main()
@@ -191,8 +265,15 @@ int main()
     cin.ignore();
     if (bCompletedGame == true)
     {
+      if (bEndlessMode)
+      {
+        cout << "Keep going! \n\n";
+      }
+      else
+      {
       cout << "Nice work! Let's get a little tougher.\n\n";
       ++Difficulty;
+      }
     }
     else
     {
