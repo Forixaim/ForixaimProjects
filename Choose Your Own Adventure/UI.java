@@ -1,62 +1,97 @@
 package maven;
 
-
 import javax.swing.*;
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
- 
-
-public class UI {
-    static JFrame frame;
-    static Container pane;
-    static JPanel panel, panel2;
-    static JLabel intro, prompt;
-    static JButton startBtn;
-
- 
-
-    public static void main(String[] args) {
-        frame = new JFrame("Snowy Christmas");
-        frame.setSize(500,500);
-        pane = frame.getContentPane();
-        pane.setLayout(null); 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
- 
 
 
-        frame.setResizable(true);
-        frame.setVisible(true);
+public class UI 
+{
+    static JFrame Frame;
+    static Container Pane;
+    static JPanel Panel, Panel2;
+    static JLabel Intro, Prompt1, Prompt2, Prompt3, Prompt4;
+    static JButton StartBtn, Walkpast, Help, Advise, Ignore, Talk, AskDogs, AskFood, AskChristmas;
+    static Dimension ScreenSize;
+    short Reputation = 0;
+    float Fun = 0;
+    final String html = "<html><body style='width: %1spx'>%1s";
+    public static void main(String[] args) 
+    {
+    	//action listeners 
+    	
+    	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+        Frame = new JFrame("Snowy Christmas");
+        Frame.setSize(screenSize.width, screenSize.height);
+        Pane = Frame.getContentPane();
+        Pane.setLayout(null); 
+        Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        makeFrameFullSize(Frame);
         
-
-        panel = new JPanel(null);
-        intro = new JLabel("The snow falls as you walk down soemthing is coming to your life.");
         
+        Frame.setResizable(true);
+        Frame.setVisible(true);     
 
-        pane.add(panel);
-        pane.add(intro);
-        pane.add(startBtn);
+        Panel = new JPanel(null);
+        Intro = new JLabel("The snow falls as you walk down soemthing is coming to your life.");
+        StartBtn = new JButton("Start");
         
+        Pane.setBounds(0,0,500,500);
+        
+        Pane.add(Panel);
+        Panel.add(Intro);
+        Panel.add(StartBtn);
 
-        intro.setBounds(50, 50, 200, 200);
-        startBtn.setBounds(100, 100, 300, 300);
+        Panel.setBounds(0, 0, screenSize.width, screenSize.height);
+        Intro.setBounds(50, 50, 1000, 200);
+        StartBtn.setBounds(100, 100, 100, 40);
 
-        startBtn.addActionListener(new startBtnActionListener());
+ 
+        
+        StartBtn.addActionListener(new StartGame());
     }
-    static class startBtnActionListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            panel.setVisible(true); 
-            panel2 = new JPanel(null);
-            prompt = new JLabel("You decided to walk down the road: ");
+    private static void makeFrameFullSize(JFrame aFrame) 
+    {
+        ScreenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        aFrame.setSize(ScreenSize.width, ScreenSize.height);
+    }
+    static class StartGame implements ActionListener 
+    {
+        public void actionPerformed(ActionEvent event)
+        {
+            Panel.setVisible(false); 
+            Panel2 = new JPanel(null);
+            Prompt1 = new JLabel("<html>"
+                    + "<h3>You were walking down on a long path on Christmas Day, you spot a child working on a snowman.</h3>"
+                    + "</html>");
                     
-            pane.add(panel2);
-            panel2.add(prompt);
+            Pane.add(Panel2);
+            Panel2.add(Prompt1);
             
-            panel2.setBounds(0, 0, 500, 500);
-            prompt.setBounds(50, 50, 200, 200);
+            Panel2.setBounds(0, 0, 1920, 1080);
+            Prompt1.setBounds(50, 50, 1870, 1030);
         }
-    }
-         
+    }   
+    static class OldSequence implements ActionListener 
+    {
+        public void actionPerformed(ActionEvent event)
+        {
+            Panel.setVisible(false); 
+            Panel2 = new JPanel(null);
+            Prompt1 = new JLabel("<html>"
+                    + "<h3>You were walking down on a long path on Christmas Day, you spot a child working on a snowman.</h3>"
+                    + "</html>");
+                    
+            Pane.add(Panel2);
+            Panel2.add(Prompt1);
+            
+            Panel2.setBounds(0, 0, 1920, 1080);
+            Prompt1.setBounds(50, 50, 1870, 1030);
+        }
+    }    
 }
